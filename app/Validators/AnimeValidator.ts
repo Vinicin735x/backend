@@ -25,11 +25,11 @@ export default class AnimeValidator {
    */
   public schema = schema.create({
     autor: schema.string({}, [ 
-      rules.registrar(),
+      rules.required(),
     ]),
     
     data_lancamento: schema.date({}, [
-      rules.registrar(),
+      rules.required(),
     ]), 
     
     nome: schema.string({},[
@@ -52,6 +52,7 @@ export default class AnimeValidator {
   public messages: CustomMessages = {
     required: "O {(field)} é obrigatório para se registrar!",
     'nome.unique': "Nome já cadastrado!",
-    'minLength': "Anime inválido"
+    'minLength': "Anime inválido",
+    'email.unique': "Email já cadastrado",
   }
 }
