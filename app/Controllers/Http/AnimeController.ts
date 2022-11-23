@@ -3,9 +3,9 @@ import Anime from '../../Models/Anime'
 import AnimeValidator from '../../Validators/AnimeValidator'
 
 export default class AnimeController {
-  public async index({ }: HttpContextContract) {
-    const Anime = await Anime.all()
-    return Anime
+  public async index({}: HttpContextContract) {
+    const anime = await Anime.all()
+    return anime
   }
 
   public async store({ request }: HttpContextContract) {
