@@ -1,6 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Anime from 'App/Models/Anime'
-import AnimeValidator from 'App/Validators/AnimeValidator'
+import Anime from '../../Models/Anime'
+import AnimeValidator from '../../Validators/AnimeValidator'
 
 export default class AnimeController {
   public async index({ }: HttpContextContract) {
@@ -24,10 +24,10 @@ export default class AnimeController {
   }
 
   public async update({ request, params, response }: HttpContextContract) {
-    const { anime } = await request.validate(AnimeValidator)
+    const { nome } = await request.validate(AnimeValidator)
     try {
-      const topic = await Anime.findBy(params.id)
-      topic.anime = anime
+      const topic = await Anime.findOrFail(params.id)
+      topic.nome = nome
       await topic.save()
       return topic
 
@@ -38,7 +38,7 @@ export default class AnimeController {
 
   public async destroy({ params, response }: HttpContextContract) {
     try {
-      const topic = await Anime.findBy(params.id)
+      const topic = await Anime.findOrFail(params.id)
       await topic.delete()
       return topic
     } catch (error) {
