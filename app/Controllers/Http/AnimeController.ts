@@ -26,7 +26,7 @@ export default class AnimeController {
   public async update({ request, params, response }: HttpContextContract) {
     const { anime } = await request.validate(AnimeValidator)
     try {
-      const topic = await Anime.findOrFail(params.id)
+      const topic = await Anime.findBy(params.id)
       topic.anime = anime
       await topic.save()
       return topic
@@ -38,7 +38,7 @@ export default class AnimeController {
 
   public async destroy({ params, response }: HttpContextContract) {
     try {
-      const topic = await Anime.findOrFail(params.id)
+      const topic = await Anime.findBy(params.id)
       await topic.delete()
       return topic
     } catch (error) {
