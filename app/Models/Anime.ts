@@ -9,7 +9,7 @@ export default class Anime extends BaseModel {
   public autor: string
 
   @column()
-  public data_lancamento: Date
+  public data_lancamento: DateTime
 
   @column()
   public nome: string
